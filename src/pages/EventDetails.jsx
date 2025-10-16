@@ -57,10 +57,7 @@ const EventDetails = () => {
           </header>
           <hr />
 
-          {/* Change `col-md-8` to `col-12 col-md-8` and `col-md-4` to `col-12 col-md-4`.
-            `col-12` ensures both sections take the full 12 columns on *all* screen sizes up to `md` (768px),
-            which is essential for a mobile-first, single-column stack.
-          */}
+       
           <div className="row">
             <div className="col-12 col-md-8">
               <h2>{data.title}</h2> <br />
@@ -88,9 +85,7 @@ const EventDetails = () => {
               </p>
               <h3>Event Tags:</h3>
               <p>
-                {/* Use `d-flex flex-wrap` on the parent `<p>` to wrap buttons naturally
-                  and ensure correct spacing with Bootstrap utilities.
-                */}
+               
                 <div className="d-flex flex-wrap gap-2">
                   {data.eventTags.map((tag, index) => (
                     // Added a `key` for performance and to resolve a React warning
@@ -103,7 +98,7 @@ const EventDetails = () => {
             </div>
 
             <div className="col-12 col-md-4">
-              {/* Spacing adjustments on small screens: mt-3 adds top margin when stacked */}
+             
               <div className="card shadow-sm border-0 mb-4 p-3 bg-white mt-3 mt-md-0">
                 <div className="py-3 mx-3">
                   <small
@@ -121,7 +116,7 @@ const EventDetails = () => {
                 </div>
               </div>
 
-              <div className="col-12 col-md-4">
+              
                 <h3>Speakers:({data.speakers.length})</h3>
 
                 <div>
@@ -162,7 +157,7 @@ const EventDetails = () => {
                         </div>
                       </div>
                     ))}
-                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -197,3 +192,4 @@ const EventDetails = () => {
 };
 
 export default EventDetails;
+
