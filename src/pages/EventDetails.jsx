@@ -153,7 +153,28 @@ const EventDetails = () => {
       </div>
     </div>
   ) : (
-    loading && <p>Loading.....</p>
+    loading && (
+      <div className="bg-body-secondary min-vh-100">
+        <div className="container">
+          <header>
+            <nav class="navbar">
+              <div>
+                <Link class="navbar-brand" to="/">
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/3992/3992650.png"
+                    alt="Bootstrap"
+                    width="100"
+                    height="50"
+                  />
+                </Link>
+              </div>
+            </nav>
+          </header>
+          <hr />
+          <p>Loading....</p>
+        </div>
+      </div>
+    )
   );
 };
 
