@@ -118,8 +118,9 @@ const Event = () => {
           <main>
             <hr />
 
-            <div className="d-flex justify-content-between align-items-center mb-4">
-              <h1>Meetup Events</h1>
+            {/* Changed to 'flex-column flex-sm-row' to stack on mobile */}
+            <div className="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-4">
+              <h1 className="mb-2 mb-sm-0">Meetup Events</h1>
 
               <div className="dropdown">
                 <button
@@ -130,10 +131,10 @@ const Event = () => {
                 >
                   {selectedType === "All" ? "Select Event Type" : selectedType}
                 </button>
-                <ul class="dropdown-menu">
+                <ul className="dropdown-menu">
                   <li>
                     <a
-                      class="dropdown-item"
+                      className="dropdown-item"
                       href="#"
                       onClick={() => handleTypeChange("All")}
                     >
@@ -142,7 +143,7 @@ const Event = () => {
                   </li>
                   <li>
                     <a
-                      class="dropdown-item"
+                      className="dropdown-item"
                       href="#"
                       onClick={() => handleTypeChange("Online Event")}
                     >
@@ -151,7 +152,7 @@ const Event = () => {
                   </li>
                   <li>
                     <a
-                      class="dropdown-item"
+                      className="dropdown-item"
                       href="#"
                       onClick={() => handleTypeChange("Offline Event")}
                     >
@@ -169,25 +170,26 @@ const Event = () => {
                 </div>
               )}
               {error && <p>Error...</p>}
-              <div className="row g-4 ">
+              <div className="row g-4 justify-content-center">
                 {filteredData &&
                   filteredData.map((event) => (
-                    <div className="col-md-4 px-5">
-                      <div class="card mt-4" style={{ width: "20rem" }}>
+                    <div key={event._id} className="col-12 col-sm-6 col-lg-4">
+                      <div className="card h-100">
                         <img
                           src={event.imageUrl}
-                          class="card-img-top"
+                          className="card-img-top img-fluid"
                           alt={event.title}
+                          style={{ height: "200px", objectFit: "cover" }}
                         />
                         <span
                           className={`badge rounded-pill position-absolute m-2 top-0 start-0 z-10 
-                              bg-light text-dark fw-bold shadow-sm`}
+                            bg-light text-dark fw-bold shadow-sm`}
                         >
                           {event.eventType}
                         </span>
 
-                        <div class="bg-body-secondary">
-                          <small class=" card-text text-body-secondary">
+                        <div className="card-body bg-body-secondary">
+                          <small className="card-text text-body-secondary">
                             {dateHandler(event.startDate)}
                           </small>
 
@@ -195,7 +197,7 @@ const Event = () => {
                             to={`/events/${event._id}`}
                             className="text-decoration-none text-dark d-block h-100"
                           >
-                            <h4 className="">{event.title}</h4>
+                            <h5 className="card-title">{event.title}</h5>
                           </Link>
                         </div>
                       </div>
