@@ -42,9 +42,9 @@ const EventDetails = () => {
       <div className="bg-body-secondary min-vh-100">
         <div className="container">
           <header>
-            <nav class="navbar">
+            <nav className="navbar">
               <div>
-                <Link class="navbar-brand" to="/">
+                <Link className="navbar-brand" to="/">
                   <img
                     src="https://cdn-icons-png.flaticon.com/512/3992/3992650.png"
                     alt="Bootstrap"
@@ -57,17 +57,23 @@ const EventDetails = () => {
           </header>
           <hr />
 
+          {/* Change `col-md-8` to `col-12 col-md-8` and `col-md-4` to `col-12 col-md-4`.
+            `col-12` ensures both sections take the full 12 columns on *all* screen sizes up to `md` (768px),
+            which is essential for a mobile-first, single-column stack.
+          */}
           <div className="row">
-            <div className="col-md-8">
+            <div className="col-12 col-md-8">
               <h2>{data.title}</h2> <br />
               <p>
                 Hosted By: <br />
                 <b>{data.hostedBy}</b>
               </p>
+              {/* Added `img-fluid` to make the image responsive and scale down on smaller screens */}
               <img
                 src={data.imageUrl}
                 alt={data.title}
-                style={{ width: "20rem" }}
+                className="img-fluid"
+                style={{ maxWidth: "100%", height: "auto" }} // Max width 100% for responsiveness
               />{" "}
               <br /> <br />
               <h3>Details:</h3>
@@ -82,16 +88,23 @@ const EventDetails = () => {
               </p>
               <h3>Event Tags:</h3>
               <p>
-                {data.eventTags.map((tags) => (
-                  <>
-                    <div className="btn btn-danger">{tags}</div> &nbsp;{" "}
-                  </>
-                ))}
+                {/* Use `d-flex flex-wrap` on the parent `<p>` to wrap buttons naturally
+                  and ensure correct spacing with Bootstrap utilities.
+                */}
+                <div className="d-flex flex-wrap gap-2">
+                  {data.eventTags.map((tag, index) => (
+                    // Added a `key` for performance and to resolve a React warning
+                    <div key={index} className="btn btn-danger">
+                      {tag}
+                    </div>
+                  ))}
+                </div>
               </p>
             </div>
 
-            <div className="col-md-4">
-              <div className="card shadow-sm border-0 mb-4 p-3 bg-white">
+            <div className="col-12 col-md-4">
+              {/* Spacing adjustments on small screens: mt-3 adds top margin when stacked */}
+              <div className="card shadow-sm border-0 mb-4 p-3 bg-white mt-3 mt-md-0">
                 <div className="py-3 mx-3">
                   <small
                     className="fs-6 text-secondary"
@@ -108,43 +121,48 @@ const EventDetails = () => {
                 </div>
               </div>
 
-              <h3>Speakers:&#40;{data.speakers.length}&#41;</h3>
+              <div className="col-12 col-md-4">
+                <h3>Speakers:({data.speakers.length})</h3>
 
-              <div>
-                <div className=" row d-flex flex-wrap justify-content-start gap-3">
-                  {data.speakers.map((speaker) => (
-                    <div className="col">
+                <div>
+                  <div className="row g-2">
+                    {data.speakers.map((speaker, index) => (
                       <div
-                        className="card text-center border p-2"
-                        style={{ minHeight: "80", minWidth: "100px" }}
+                        key={index}
+                        className="col-4 col-sm-3 col-md-6 col-lg-4"
                       >
-                        <img
-                          src={speaker.photo}
-                          alt={speaker.name}
-                          className="rounded-circle mb-1 shadow-sm mx-auto "
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            objectFit: "cover",
-                          }}
-                        />
-                        <div className="card-body">
-                          <span
-                            className="d-block fw-bold mt-1"
-                            style={{ fontSize: "0.9em" }}
-                          >
-                            {speaker.name}
-                          </span>
-                          <span
-                            className="d-block text-muted"
-                            style={{ fontSize: "0.8em", lineHeight: "1.1" }}
-                          >
-                            {speaker.role}
-                          </span>
+                        <div
+                          className="card text-center border p-2"
+                          style={{ minHeight: "80px", minWidth: "unset" }}
+                        >
+                          <img
+                            src={speaker.photo}
+                            alt={speaker.name}
+                            className="rounded-circle mb-1 shadow-sm mx-auto "
+                            style={{
+                              width: "60px",
+                              height: "60px",
+                              objectFit: "cover",
+                            }}
+                          />
+                          <div className="card-body p-1">
+                            <span
+                              className="d-block fw-bold mt-1"
+                              style={{ fontSize: "0.8em" }}
+                            >
+                              {speaker.name}
+                            </span>
+                            <span
+                              className="d-block text-muted"
+                              style={{ fontSize: "0.7em", lineHeight: "1.1" }}
+                            >
+                              {speaker.role}
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -157,9 +175,9 @@ const EventDetails = () => {
       <div className="bg-body-secondary min-vh-100">
         <div className="container">
           <header>
-            <nav class="navbar">
+            <nav className="navbar">
               <div>
-                <Link class="navbar-brand" to="/">
+                <Link className="navbar-brand" to="/">
                   <img
                     src="https://cdn-icons-png.flaticon.com/512/3992/3992650.png"
                     alt="Bootstrap"

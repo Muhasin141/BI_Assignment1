@@ -163,7 +163,11 @@ const Event = () => {
             </div>
 
             <div>
-              {loading && <p>Loading, Please Wait</p>}
+              {loading && (
+                <div className="container">
+                  <p>Loading, Please Wait</p>
+                </div>
+              )}
               {error && <p>Error...</p>}
               <div className="row g-4 ">
                 {filteredData &&
