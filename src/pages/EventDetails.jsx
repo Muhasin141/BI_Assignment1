@@ -57,7 +57,6 @@ const EventDetails = () => {
           </header>
           <hr />
 
-       
           <div className="row">
             <div className="col-12 col-md-8">
               <h2>{data.title}</h2> <br />
@@ -65,12 +64,11 @@ const EventDetails = () => {
                 Hosted By: <br />
                 <b>{data.hostedBy}</b>
               </p>
-              {/* Added `img-fluid` to make the image responsive and scale down on smaller screens */}
               <img
                 src={data.imageUrl}
                 alt={data.title}
                 className="img-fluid"
-                style={{ maxWidth: "100%", height: "auto" }} // Max width 100% for responsiveness
+                style={{ maxWidth: "100%", height: "auto" }}
               />{" "}
               <br /> <br />
               <h3>Details:</h3>
@@ -85,10 +83,8 @@ const EventDetails = () => {
               </p>
               <h3>Event Tags:</h3>
               <p>
-               
                 <div className="d-flex flex-wrap gap-2">
                   {data.eventTags.map((tag, index) => (
-                    // Added a `key` for performance and to resolve a React warning
                     <div key={index} className="btn btn-danger">
                       {tag}
                     </div>
@@ -98,7 +94,6 @@ const EventDetails = () => {
             </div>
 
             <div className="col-12 col-md-4">
-             
               <div className="card shadow-sm border-0 mb-4 p-3 bg-white mt-3 mt-md-0">
                 <div className="py-3 mx-3">
                   <small
@@ -116,18 +111,18 @@ const EventDetails = () => {
                 </div>
               </div>
 
-              
-                <h3>Speakers:({data.speakers.length})</h3>
+              <h3>Speakers:({data.speakers.length})</h3>
 
-                <div>
-                  <div className="row g-2">
-                    {data.speakers.map((speaker, index) => (
-                      <div
-                        key={index}
-                        className="col-4 col-sm-3 col-md-6 col-lg-4"
-                      >
+              <div>
+                <div className="row g-2">
+                  {data.speakers.map((speaker, index) => (
+                    <div
+                      key={index}
+                      className="col-4 col-sm-3 col-md-6 col-lg-4"
+                    >
+                      <div className="mx-auto" style={{ maxWidth: "140px" }}>
                         <div
-                          className="card text-center border p-2"
+                          className="card text-center border p-2 h-100 "
                           style={{ minHeight: "80px", minWidth: "unset" }}
                         >
                           <img
@@ -143,21 +138,29 @@ const EventDetails = () => {
                           <div className="card-body p-1">
                             <span
                               className="d-block fw-bold mt-1"
-                              style={{ fontSize: "0.8em" }}
+                              style={{
+                                fontSize: "0.75em",
+
+                                whiteSpace: "normal",
+                              }}
                             >
                               {speaker.name}
                             </span>
                             <span
-                              className="d-block text-muted"
-                              style={{ fontSize: "0.7em", lineHeight: "1.1" }}
+                              className="d-block  mt-1 text-muted"
+                              style={{
+                                fontSize: "0.75em",
+
+                                whiteSpace: "normal",
+                              }}
                             >
                               {speaker.role}
                             </span>
                           </div>
                         </div>
                       </div>
-                    ))}
-                  
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
